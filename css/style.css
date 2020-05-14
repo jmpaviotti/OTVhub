@@ -34,7 +34,7 @@ body {
 	padding: 0;
 }
 
-.grid-item{
+.grid-item {
 	width: 400px;
 	height: 400px;
 	border-radius: 10px;
@@ -42,4 +42,9 @@ body {
 	background-color: #000;
 	color: #FFF;
 	margin: 1%;
+}
+
+.grid-item iframe {
+	width: 400px;
+	height: 300px;
 }
