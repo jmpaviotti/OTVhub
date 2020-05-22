@@ -1,5 +1,5 @@
 const options = [], players = [], channel_names = ['fedmyster', 'fedmyster2', 'lilypichu', 'scarra', 'pokimane', 'yvonnie'];
-var temp;
+let default_volume = 0.8;
 
 for(let i = 0; i < channel_names.length; i++) {    
     options.push({
@@ -8,5 +8,13 @@ for(let i = 0; i < channel_names.length; i++) {
         channel: channel_names[i],
     });
 
-    players.push( new Twitch.Player('player_' + channel_names[i], options[i]) );
-}
+    players.push( new Twitch.Player('player_' + channel_names[i], options[i]) )
+};
+
+players.forEach(player => player.addEventListener(Twitch.Player.READY, function() {
+    player.pause();
+}));
+
+
+
+
