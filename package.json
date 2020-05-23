@@ -1,0 +1,27 @@
+{
+  "name": "OTVhub",
+  "version": "1.0.0",
+  "description": "OTV hub where you can keep track of streams (webdev project)",
+  "main": "index.js",
+  "dependencies": {
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-config-prettier": "^6.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmpaviotti/OTVhub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmpaviotti/OTVhub/issues"
+  },
+  "homepage": "https://github.com/jmpaviotti/OTVhub#readme"
+}
