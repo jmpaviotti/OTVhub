@@ -1,6 +1,9 @@
 // Modules
-import { resizePlayer } from './modules/twitch.js';
+import { autoPauseAll, clearContainer } from './modules/twitch.js';
 import * as grid from './modules/grid.js';
+import * as single from './modules/single.js';
+
+// Functions
 
 // Variables
 const players = [],
@@ -13,16 +16,39 @@ const players = [],
     'yvonnie',
   ];
 const container = document.querySelector('#twitch');
+const button = document.querySelector('#swap');
+let mode = 'single';
 
 // Main code
 // Choose between grid and dynamic view (Eventually change to dynamic import?)
-// Grid mode (if grid true, run this)
-grid.createPlayerGrid(channel_names, container, players);
-grid.autoPause(players);
-window.onresize = function () {
-  const dimensions = grid.calcPlayerDimensions(container);
-  players.forEach((player) => resizePlayer(player, dimensions));
-};
-//
+if (mode == 'grid') {
+  // Grid mode
+  grid.createPlayerGrid(channel_names, container, players);
+  window.addEventListener(
+    'resize',
+    () => grid.resizeAll(players, container),
+    false
+  );
+} else if (mode == 'single') {
+  // Single player mode
+  single.createPlayerBox(channel_names, container, players);
+  single.resizeGrid(container);
+  window.addEventListener(
+    'resize',
+    () => {
+      single.resizeAll(players, container);
+      single.resizeGrid(container);
+    },
+    false
+  );
+}
 
-// Dynamic mode
+// Global actions
+autoPauseAll(players);
+
+// Switch
+button.onclick = function () {
+  clearContainer(container);
+  //   if (mode == 'grid') grid.createPlayerGrid(channel_names, container, players);
+  //   else if (mode == 'single');
+};

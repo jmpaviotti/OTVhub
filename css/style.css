@@ -6,12 +6,6 @@ body {
   margin: 0;
 }
 
-.container {
-  width: 80%;
-  margin: auto;
-  overflow: hidden;
-}
-
 #main-header {
   text-align: center;
   background: #555;
@@ -19,10 +13,31 @@ body {
     1px 1px 0 #fff;
 }
 
+.container-header {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+  margin-left: 10%;
+}
+
+#swap {
+  background-color: transparent;
+  float: left;
+  margin: 1.45em;
+}
+
+#swap:focus {
+  border-color: transparent;
+}
+
+#swap_img {
+  height: 1.6em;
+  width: 1.45em;
+}
+
 #twitch {
   display: grid;
-  box-sizing: border-box;
-  height: 90vh;
+  height: 89vh;
   grid-template-columns: auto auto auto;
   background-color: rgb(109, 109, 109);
   border-radius: 15px;

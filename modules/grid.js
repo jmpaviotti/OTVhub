@@ -1,7 +1,7 @@
 /* global Twitch*/
 
 // Modules
-import { insertPlayer } from './twitch.js';
+import { insertPlayer, resizePlayer } from './twitch.js';
 
 // Functions
 function calcPlayerDimensions(container) {
@@ -26,21 +26,9 @@ function createPlayerGrid(channel_names, container, players) {
   }
 }
 
-// Cant get autoresize to work properly in the module
-// function autoResize(players, container) {
-//   const dimensions = calcPlayerDimensions(container);
-//   window.onresize = function () {
-//     players.forEach((player) => resizePlayer(player, dimensions));
-//   };
-// }
-
-function autoPause(players) {
-  // Given a list of players, adds listener for autopause
-  players.forEach((player) =>
-    player.addEventListener(Twitch.Player.READY, function () {
-      player.pause();
-    })
-  );
+function resizeAll(players, container) {
+  const dimensions = calcPlayerDimensions(container);
+  players.forEach((player) => resizePlayer(player, dimensions));
 }
 
-export { calcPlayerDimensions, createPlayerGrid, autoPause };
+export { createPlayerGrid, resizeAll };
