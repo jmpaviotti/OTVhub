@@ -1,5 +1,3 @@
-/* global Twitch*/
-
 // Modules
 import { insertPlayer, resizePlayer } from './twitch.js';
 
