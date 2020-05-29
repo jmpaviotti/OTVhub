@@ -1,54 +1,200 @@
+html {
+  height: 100%;
+}
+
 body {
-  background-color: lightgray;
+  background-color: white;
+  display: flex;
+  flex-flow: column;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.6em;
   margin: 0;
+  height: 100%;
 }
 
-#main-header {
+#box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+#banner {
   text-align: center;
   background: #555;
+  padding: 1em;
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
     1px 1px 0 #fff;
 }
 
-.container-header {
-  width: 80%;
-  margin: auto;
-  overflow: hidden;
-  margin-left: 10%;
-}
-
-#swap {
-  background-color: transparent;
-  float: left;
-  margin: 1.45em;
-}
-
-#swap:focus {
-  border-color: transparent;
-}
-
-#swap_img {
-  height: 1.6em;
-  width: 1.45em;
+#header-text {
+  margin: 0;
 }
 
 #twitch {
-  display: grid;
-  height: 89vh;
-  grid-template-columns: auto auto auto;
-  background-color: rgb(109, 109, 109);
-  border-radius: 15px;
-  padding: 0.5%;
-  margin: 0.5%;
+  display: flex;
+  flex: 1 1 auto;
 }
 
-.grid-item {
-  border-radius: 10px;
-  background-color: #000;
-  color: #fff;
-  padding: 1%;
+#players {
+  display: flex;
+  box-sizing: border-box;
+  flex: 9 2 auto;
   margin: 0.5%;
+  margin-right: 0.25%;
+  background-color: rgb(48, 48, 48);
+  border-radius: 10px;
+}
+
+.twitch-player {
+  box-sizing: border-box;
+  flex: 1;
+  margin: 0.6em;
+  background-color: #000;
+  border: 0.5em solid #000;
+  border-radius: 5px;
+}
+
+#chat {
+  display: flex;
+  box-sizing: border-box;
+  flex: 1 1 300px;
+  margin: 0.5%;
+  margin-left: 0.25%; /* Gets fucked by media query */
+  background-color: rgb(85, 85, 85);
+  border-radius: 10px;
+}
+
+#chat iframe {
+  box-sizing: border-box;
+  flex: 1;
+  margin: 0.6em;
+  border-radius: 5px;
+}
+
+.menu {
+  position: absolute;
+}
+
+.menu .toggler {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin: 8px;
+  opacity: 0%;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.menu .toggler-graph {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu .toggler-graph > div {
+  position: relative;
+  width: 60%;
+  height: 3px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+}
+
+.menu .toggler-graph > div:before,
+.menu .toggler-graph > div:after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  width: 100%;
+  height: 3px;
+  background: inherit;
+  transition: all 0.5s ease;
+}
+
+.menu .toggler-graph > div:after {
+  top: 10px;
+}
+
+/* Options */
+
+.menu .options {
+  position: relative;
+  top: 45px;
+  left: 8px;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  background: #666666;
+  font: bold 32px 'Lato';
+  line-height: 1.5em;
+  color: #fff;
+  transition: all 0.5s ease;
+  visibility: hidden;
+  transform: scale(1, 0);
+  transform-origin: top left;
+  transition: all 0.6s;
+}
+
+.menu .options li {
+  border-bottom: 0.2em outset;
+}
+
+.menu .options li button {
+  padding: 0.5em;
+  padding-left: 0.2em;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background-color: inherit;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.menu .options li button:hover {
+  background-color: #858585;
+}
+
+.menu .options li button:focus {
+  outline: none;
+}
+
+/* Show Menu */
+.menu .toggler:checked ~ .options {
+  visibility: visible;
+  transform: scaleY(1);
+}
+
+/* Burger Animation */
+.menu .toggler:checked ~ .toggler-graph > div {
+  background-color: rgba(85, 85, 85, 0);
+}
+
+.menu .toggler:checked + .toggler-graph > div:before,
+.menu .toggler:checked + .toggler-graph > div:after {
+  background-color: rgb(0, 0, 0);
+}
+
+.menu .toggler:checked + .toggler-graph > div:before {
+  transform: translateY(9px) rotate(48deg) scale(1.5, 2);
+}
+
+.menu .toggler:checked + .toggler-graph > div:after {
+  transform: translateY(-11px) rotate(-48deg) scale(1.5, 2);
+}
+
+/* Queries */
+@media (max-width: 1024px) {
+  #twitch {
+    flex-flow: column;
+  }
 }
