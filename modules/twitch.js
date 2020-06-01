@@ -18,6 +18,12 @@ function insertChat(name, container) {
   child.setAttribute('scrolling', 'yes');
   parent.append(child);
   container.append(parent);
+  return child;
+}
+
+function removeChat(container) {
+  const chat = container.querySelector('#chat');
+  chat.remove();
 }
 
 function clearContainer(container) {
@@ -44,4 +50,11 @@ function autoPauseAll(players) {
   );
 }
 
-export { insertPlayer, insertChat, resizePlayer, clearContainer, autoPauseAll };
+export {
+  insertPlayer,
+  insertChat,
+  removeChat,
+  resizePlayer,
+  clearContainer,
+  autoPauseAll,
+};
