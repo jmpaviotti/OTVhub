@@ -1,6 +1,6 @@
-class button {
-  constructor(name, parent, content = '') {
-    this.name = name;
+class Button {
+  constructor(id, parent, content = '') {
+    this.id = id;
     const li = document.createElement('li');
     const node = li.appendChild(document.createElement('button'));
     parent.appendChild(li);
@@ -9,31 +9,18 @@ class button {
   }
 }
 
-class switcher extends button {
-  constructor(name, parent, content) {
-    super(name, parent, content);
-  }
-
-  bindElements(player, chat) {
-    this.node.addEventListener('click', () => {
-      player.setChannel(this.name);
-      chat.setAttribute(
-        'src',
-        `https://www.twitch.tv/embed/${this.name}/chat?parent=otvhub.com`
-      );
-    });
+class StaticButton {
+  constructor(id, parent, content = '') {
+    this.id = id;
+    this.node = parent.querySelector(`#${id}`);
+    this.node.textContent = content;
   }
 }
 
-function createSwitchers(channel_names, container, player, chat) {
-  const switchers = [];
-  for (const name of channel_names) {
-    let temp = new switcher(name, container, name);
-    temp.bindElements(player, chat);
-    temp.bindChat;
-    switchers.push(temp);
+class SwitchView extends StaticButton {
+  constructor(id, parent, content = '') {
+    super(id, parent, content);
   }
-  return switchers;
 }
 
-export { createSwitchers };
+export { Button };
