@@ -1,5 +1,5 @@
 // Modules
-import { insertPlayer, autoPauseAll } from './twitch.js';
+import { insertPlayer } from './twitch.js';
 import { Chat } from './chat.js';
 import { createSwitchers } from './buttons/switchers.js';
 import { ChatButton } from './buttons/chat_button.js';
@@ -19,20 +19,18 @@ function createPlayerBox(name, container) {
   return players;
 }
 
-export default function init(channel_names, index, container, menu) {
+export default function init(data) {
   // Inserts player
-  const players = createPlayerBox(channel_names[index], container);
+  const players = createPlayerBox(data.channels[data.index], data.container);
 
   // Inserts chat + Chat button w/ logic
-  const chat = new Chat(container, channel_names[index]);
+  const chat = new Chat(data.container, data.channels[data.index]);
   chat.insert();
-  console.log(chat.parent);
-  console.log(chat.node);
-  const chat_button = new ChatButton('hide-chat', menu, 'Hide Chat');
+  const chat_button = new ChatButton('hide-chat', data.menu, 'Hide Chat');
   chat_button.bindChat(chat);
 
   // Inserts buttons to switch channels
-  const switchers = createSwitchers(channel_names, menu, players[0], chat);
+  const switchers = createSwitchers(data.channels, data.menu, players[0], chat);
 
   return {
     players: players,

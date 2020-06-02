@@ -1,18 +1,24 @@
-// Modules
-import initSingle from './modules/single.js';
-
 // Variables
-const channel_names = [
-  'Fedmyster',
-  'Fedmyster2',
-  'Lilypichu',
-  'Pokimane',
-  'Scarra',
-  'Yvonnie',
-];
-const container = document.querySelector('#twitch');
-const menu = document.querySelector('.options');
-let mode = 'single';
+const config = {
+  channels: [
+    'Fedmyster',
+    'Fedmyster2',
+    'Lilypichu',
+    'Pokimane',
+    'Scarra',
+    'Yvonnie',
+  ],
+  index: 0,
+  container: document.querySelector('#twitch'),
+  menu: document.querySelector('.options'),
+};
+
+const stored_channel = localStorage.getItem('channel');
+if (stored_channel) {
+  config.index = config.channels.indexOf(stored_channel);
+}
 
 // Main code
-initSingle(channel_names, 0, container, menu);
+import('./modules/single.js').then((module) => {
+  config.instance = module.default(config);
+});

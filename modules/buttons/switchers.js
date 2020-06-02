@@ -9,6 +9,7 @@ class Switcher extends Button {
     this.node.addEventListener('click', () => {
       player.setChannel(this.id);
       chat.setChannel(this.id);
+      localStorage.setItem('channel', this.id);
     });
   }
 }
