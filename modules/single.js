@@ -1,8 +1,10 @@
 // Modules
 import { insertPlayer } from './twitch.js';
+import { changeView } from './change_view.js';
 import { Chat } from './chat.js';
-import { createSwitchers } from './buttons/switchers.js';
+import { Button } from './buttons.js';
 import { ChatButton } from './buttons/chat_button.js';
+import { createSwitchers } from './buttons/switchers.js';
 
 // Functions
 
@@ -20,21 +22,35 @@ function createPlayerBox(name, container) {
 }
 
 export default function init(data) {
+  // Parsing
+  const { channels, container, menu } = data;
+  const name = channels[data.index];
+
   // Inserts player
-  const players = createPlayerBox(data.channels[data.index], data.container);
+  const players = createPlayerBox(name, container);
+
+  // Inserts button to change view
+  const change_view = new Button('change-view', menu, 'Grid View');
+  change_view.node.addEventListener('click', () => {
+    changeView(data);
+  });
 
   // Inserts chat + Chat button w/ logic
-  const chat = new Chat(data.container, data.channels[data.index]);
+  const chat = new Chat(container, name);
   chat.insert();
-  const chat_button = new ChatButton('hide-chat', data.menu, 'Hide Chat');
+  const chat_button = new ChatButton('hide-chat', menu, 'Hide Chat');
   chat_button.bindChat(chat);
 
   // Inserts buttons to switch channels
-  const switchers = createSwitchers(data.channels, data.menu, players[0], chat);
+  const switchers = createSwitchers(channels, menu, players[0], chat);
 
   return {
     players: players,
     chat: chat,
-    buttons: { chat: chat_button, switchers: switchers },
+    buttons: {
+      change_view: change_view,
+      chat: chat_button,
+      switchers: switchers,
+    },
   };
 }

@@ -4,12 +4,7 @@ function insertPlayer(name, container) {
   child.setAttribute('id', 'player_' + name);
   child.setAttribute('class', 'twitch-player');
   container.querySelector('#players').append(child);
-}
-
-function clearContainer(container) {
-  while (container.firstChild) {
-    container.removeChild(container.lastChild);
-  }
+  return child;
 }
 
 function autoPauseAll(players) {
@@ -24,4 +19,4 @@ function autoPauseAll(players) {
   );
 }
 
-export { insertPlayer, clearContainer, autoPauseAll };
+export { insertPlayer, autoPauseAll };

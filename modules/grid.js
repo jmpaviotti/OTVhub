@@ -1,34 +1,44 @@
-/* global Twitch*/
-
 // Modules
-import { insertPlayer, resizePlayer } from './twitch.js';
+import { insertPlayer, autoPauseAll } from './twitch.js';
+import { changeView } from './change_view.js';
+import { Button } from './buttons.js';
 
 // Functions
-function calcPlayerDimensions(container) {
-  // Calculates size of twitch player embeds based on the main container
-  return {
-    width: container.offsetWidth * 0.32,
-    height: container.offsetHeight * 0.46,
-  };
-}
+function createPlayerGrid(names, container) {
+  const players = [];
 
-function createPlayerGrid(channel_names, container, players) {
-  // Given a list of channels, puts twitch embeds of each on provided grid container
-  for (let i = 0; i < channel_names.length; i++) {
-    insertPlayer(channel_names[i], container);
+  for (let i = 0; i < names.length; i++) {
+    insertPlayer(names[i], container).style = 'flex: 1 1 32%';
 
     const options = {
-      ...calcPlayerDimensions(container),
-      channel: channel_names[i],
+      width: '100%',
+      height: '100%',
+      channel: names[i],
     };
 
-    players.push(new Twitch.Player('player_' + channel_names[i], options));
+    players.push(new Twitch.Player('player_' + names[i], options));
   }
+  return players;
 }
 
-function resizeAll(players, container) {
-  const dimensions = calcPlayerDimensions(container);
-  players.forEach((player) => resizePlayer(player, dimensions));
-}
+export default function init(data) {
+  // Parsing
+  const { channels, container, menu } = data;
 
-export { createPlayerGrid, resizeAll };
+  // Inserts players
+  const players = createPlayerGrid(channels, container);
+
+  // Inserts button to change view
+  const change_view = new Button('change-view', menu, 'Dynamic View');
+  change_view.node.addEventListener('click', () => {
+    changeView(data);
+  });
+
+  // Autopause
+  autoPauseAll(players);
+
+  return {
+    players: players,
+    buttons: { change_view: change_view },
+  };
+}

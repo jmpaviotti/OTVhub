@@ -10,7 +10,7 @@ class Chat {
     this.parent.setAttribute('id', 'chat');
     this.node.setAttribute(
       'src',
-      `https://www.twitch.tv/embed/${this.channel}/chat?parent=otvhub.com`
+      `https://www.twitch.tv/embed/${this.channel}/chat?darkpopout`
     );
     this.node.setAttribute('frameborder', '0');
     this.node.setAttribute('scrolling', 'yes');
@@ -28,29 +28,9 @@ class Chat {
     this.channel = channel;
     this.node.setAttribute(
       'src',
-      `https://www.twitch.tv/embed/${this.channel}/chat?parent=otvhub.com`
+      `https://www.twitch.tv/embed/${this.channel}/chat?darkpopout`
     );
   }
-}
-
-function insertChat(name, container) {
-  const parent = document.createElement('aside');
-  const child = document.createElement('iframe');
-  parent.setAttribute('id', 'chat');
-  child.setAttribute(
-    'src',
-    `https://www.twitch.tv/embed/${name}/chat?parent=otvhub.com`
-  );
-  child.setAttribute('frameborder', '0');
-  child.setAttribute('scrolling', 'yes');
-  parent.append(child);
-  container.append(parent);
-  return child;
-}
-
-function removeChat(container) {
-  const chat = container.querySelector('#chat');
-  chat.remove();
 }
 
 export { Chat };

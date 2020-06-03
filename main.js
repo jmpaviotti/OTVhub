@@ -11,6 +11,7 @@ const config = {
   index: 0,
   container: document.querySelector('#twitch'),
   menu: document.querySelector('.options'),
+  mode: 'single',
 };
 
 const stored_channel = localStorage.getItem('channel');
