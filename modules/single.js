@@ -1,5 +1,4 @@
 // Modules
-import { insertPlayer } from './twitch.js';
 import { changeView } from './change_view.js';
 import { Chat } from './chat.js';
 import { Button } from './buttons.js';
@@ -7,6 +6,15 @@ import { ChatButton } from './buttons/chat_button.js';
 import { createSwitchers } from './buttons/switchers.js';
 
 // Functions
+
+function insertPlayer(name, container) {
+  // Inserts the html elements required for a twitch player embed into DOM
+  const child = document.createElement('div');
+  child.setAttribute('id', 'player_' + name);
+  child.setAttribute('class', 'twitch-player');
+  container.querySelector('#players').append(child);
+  return child;
+}
 
 function createPlayerBox(name, container) {
   const players = [];
@@ -21,6 +29,7 @@ function createPlayerBox(name, container) {
   return players;
 }
 
+// Export
 export default function init(data) {
   // Parsing
   const { channels, container, menu } = data;

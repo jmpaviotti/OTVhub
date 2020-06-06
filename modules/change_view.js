@@ -27,15 +27,13 @@ function changeView(config) {
   if (config.mode == 'grid') {
     import('./single.js').then((module) => {
       config.instance = module.default(config);
+      config.mode = 'single';
     });
-    config.mode = 'single';
-    config.change_view.node.textContent = 'Grid View';
   } else if (config.mode == 'single') {
     import('./grid.js').then((module) => {
       config.instance = module.default(config);
+      config.mode = 'grid';
     });
-    config.mode = 'grid';
-    config.change_view.node.textContent = 'Dynamic View';
   }
 }
 

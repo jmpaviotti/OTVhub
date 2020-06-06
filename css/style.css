@@ -42,6 +42,7 @@ body {
   flex: 9 2 auto;
   flex-wrap: wrap;
   margin: 0.5%;
+  padding: 0.2%;
   background-color: rgb(48, 48, 48);
   border-radius: 10px;
 }
@@ -55,11 +56,17 @@ body {
   border-radius: 5px;
 }
 
+.twitch-player.grid {
+  flex: 1 0 32%;
+  margin: 0.2%;
+}
+
 #chat {
   display: flex;
   box-sizing: border-box;
   flex: 1 1 300px;
   margin: 0.5%;
+  margin-left: 0;
   background-color: rgb(85, 85, 85);
   border-radius: 10px;
 }
@@ -73,13 +80,15 @@ body {
 
 .menu {
   position: absolute;
+  left: 8px;
+  top: 8px;
 }
 
 .menu .toggler {
   position: absolute;
   width: 40px;
   height: 40px;
-  margin: 8px;
+  margin: 0;
   opacity: 0%;
   z-index: 1;
   cursor: pointer;
@@ -89,7 +98,6 @@ body {
   position: absolute;
   width: 40px;
   height: 40px;
-  margin: 8px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
   display: flex;
@@ -127,10 +135,10 @@ body {
 
 .menu .options {
   position: relative;
-  top: 45px;
-  left: 8px;
+  top: 37.5px;
   padding: 0;
   margin: 0;
+  white-space: nowrap;
   list-style-type: none;
   background: #666666;
   font: bold 32px 'Lato';
@@ -186,7 +194,7 @@ body {
 
 .menu .toggler:checked + .toggler-graph > div:before,
 .menu .toggler:checked + .toggler-graph > div:after {
-  background-color: rgb(0, 0, 0);
+  background-color: #fff;
 }
 
 .menu .toggler:checked + .toggler-graph > div:before {
@@ -201,5 +209,46 @@ body {
 @media (max-width: 1024px) {
   #twitch {
     flex-flow: column;
+  }
+
+  #chat {
+    margin: 0.5%;
+    margin-top: 0;
+  }
+
+  .twitch-player.grid {
+    flex: 1 0 33%;
+    margin: 0.4%;
+  }
+}
+
+@media (max-width: 500px) {
+  #header-text {
+    font-size: 0em;
+  }
+
+  .menu {
+    left: calc(50% - 20px);
+  }
+
+  .menu .options {
+    left: calc(-50% + 20px);
+  }
+
+  #players {
+    flex-flow: column;
+    margin: 1%;
+  }
+
+  .menu .options li button {
+    padding-left: 0.3em;
+  }
+
+  .twitch-player {
+    margin: 1% 2%;
+  }
+
+  .twitch-player.grid {
+    height: 300px;
   }
 }
