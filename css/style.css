@@ -43,7 +43,8 @@ body {
   flex-wrap: wrap;
   margin: 0.5%;
   padding: 0.2%;
-  background-color: rgb(48, 48, 48);
+  /* background-color: rgb(48, 48, 48); */
+  background-color: rgb(85, 85, 85);
   border-radius: 10px;
 }
 

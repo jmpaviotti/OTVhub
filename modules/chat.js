@@ -10,7 +10,7 @@ class Chat {
     this.parent.setAttribute('id', 'chat');
     this.node.setAttribute(
       'src',
-      `https://www.twitch.tv/embed/${this.channel}/chat?darkpopout`
+      `https://www.twitch.tv/embed/${this.channel}/chat?darkpopout&parent=${document.domain}`
     );
     this.node.setAttribute('frameborder', '0');
     this.node.setAttribute('scrolling', 'yes');
@@ -28,7 +28,7 @@ class Chat {
     this.channel = channel;
     this.node.setAttribute(
       'src',
-      `https://www.twitch.tv/embed/${this.channel}/chat?darkpopout`
+      `https://www.twitch.tv/embed/${this.channel}/chat?darkpopout&parent=${document.domain}`
     );
   }
 }

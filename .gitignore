@@ -5,3 +5,5 @@ modules/hooks.js
 modules/live.js
 modules/twitch_data.js
 .prettierIgnore
+# Local Netlify folder
+.netlify
